@@ -1,12 +1,12 @@
 {
   "name": "nullstack-tsx-example",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Nullstack project using TSX files",
+  "author": "GuiDevloper",
   "license": "MIT",
   "devDependencies": {
     "nullstack": "~0.12.0",
-    "nullstack-types": "^0.6.1"
+    "nullstack-types": "^0.6.2"
   },
   "scripts": {
     "start": "npx nullstack-to-njs --port=5000",
