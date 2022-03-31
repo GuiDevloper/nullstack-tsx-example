@@ -5,12 +5,11 @@
   "author": "GuiDevloper",
   "license": "MIT",
   "devDependencies": {
-    "nullstack": "~0.12.0",
-    "nullstack-types": "^0.6.2"
+    "nullstack": "github:GuiDevloper/nullstack#custom-webpack-config"
   },
   "scripts": {
-    "start": "npx nullstack-to-njs --port=5000",
-    "build": "npx nullstack build --mode=ssr",
+    "start": "npx nullstack start --port=5000 --input=../nullstack-tsx-example",
+    "build": "npx nullstack build --mode=ssr --input=../nullstack-tsx-example",
     "vercel-build": "npm run build"
   }
 }
