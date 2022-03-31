@@ -8,8 +8,8 @@
     "nullstack": "github:GuiDevloper/nullstack#custom-webpack-config"
   },
   "scripts": {
-    "start": "npx nullstack start --port=5000 --input=../nullstack-tsx-example",
-    "build": "npx nullstack build --mode=ssr --input=../nullstack-tsx-example",
+    "start": "npx nullstack start --port=5000",
+    "build": "npx nullstack build --mode=ssr",
     "vercel-build": "npm run build"
   }
 }
