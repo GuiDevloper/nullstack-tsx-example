@@ -1,5 +1,5 @@
 import Nullstack from 'nullstack';
-import Application from './out/Application';
+import Application from './src/Application';
 
 const context = Nullstack.start(Application);
 

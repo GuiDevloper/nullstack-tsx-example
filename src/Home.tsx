@@ -1,9 +1,9 @@
-/// <reference types="nullstack-types"/>
 import Nullstack from 'nullstack';
+import { NullstackServerContext } from 'nullstack/types';
 import './Home.scss';
-import Logo from 'nullstack/logo.njs';
+import Logo from './NullstackLogo';
 
-type Props = Context & {
+type Props = NullstackServerContext & {
   /**
    * The project name that Home needs
    */
@@ -15,12 +15,12 @@ class Home extends Nullstack {
     super();
   }
 
-  prepare({ project, page }: Context) {
+  prepare({ project, page }: NullstackServerContext) {
     page.title = `${project.name} - Nulla-chan te dá as boas vindas!`;
     page.description = `${project.name} foi feito com Nullstack`;
   }
 
-  renderLink({ children, href }: Context & { href: string }) {
+  renderLink({ children, href }: NullstackServerContext & { href: string }) {
     const link = href + '?ref=create-nullstack-app';
     return (
       <a href={link} target="_blank" rel="noopener noreferrer">
