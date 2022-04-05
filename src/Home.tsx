@@ -1,7 +1,7 @@
 import Nullstack from 'nullstack';
 import { NullstackServerContext } from 'nullstack/types';
 import './Home.scss';
-import Logo from './NullstackLogo';
+import Logo from 'nullstack/logo';
 
 type Props = NullstackServerContext & {
   /**
