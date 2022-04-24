@@ -1,22 +1,11 @@
 const [server, client] = require('nullstack/webpack.config');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { useTSX } = require('nullstack-helpers/configs');
 
-function useTSX(config) {
-  config.module.rules = config.module.rules.map(rule => {
-    if (!rule.test) return rule;
-
-    if (((rule.resolve || {}).extensions || []).includes('.nts')) {
-      const ntsId = rule.resolve.extensions.indexOf('.nts');
-      rule.resolve.extensions[ntsId] = '.tsx';
-    }
-
-    const ruleTest = rule.test.source;
-    const isNTS = ruleTest.indexOf('nts') > -1;
-    return {
-      ...rule,
-      test: isNTS ? new RegExp(ruleTest.replace('nts', 'tsx')) : rule.test
-    }
-  })
-
+function useForkTS(config) {
+  if (config.entry.indexOf('client') > -1) {
+    config.plugins.push(new ForkTsCheckerWebpackPlugin());
+  }
   return config;
 }
 
@@ -24,6 +13,7 @@ function configFactory(original) {
   return (...args) => {
     let config = original(...args);
     config = useTSX(config);
+    config = useForkTS(config);
 
     return config;
   }
