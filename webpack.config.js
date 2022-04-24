@@ -3,7 +3,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { useTSX } = require('nullstack-helpers/configs');
 
 function useForkTS(config) {
-  if (config.entry.indexOf('client') > -1) {
+  if (config.entry.indexOf('client') > -1 && config.mode === 'development') {
     config.plugins.push(new ForkTsCheckerWebpackPlugin());
   }
   return config;
