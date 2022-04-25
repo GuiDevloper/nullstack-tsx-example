@@ -10,10 +10,7 @@ type Props = NullstackContext & {
   projectName: string
 }
 
-class Home extends Nullstack {
-  constructor(_: Props) {
-    super();
-  }
+class Home extends Nullstack<Props> {
 
   prepare({ project, page }: NullstackContext) {
     page.title = `${project.name} - Nulla-chan te dá as boas vindas!`;
