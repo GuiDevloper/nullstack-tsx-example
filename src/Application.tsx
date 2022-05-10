@@ -1,11 +1,11 @@
 import Nullstack from 'nullstack';
-import { NullstackServerContext } from 'nullstack/types';
+import type { NullstackContext } from './custom-types';
 import './Application.scss';
 import Home from './Home';
 
 class Application extends Nullstack {
 
-  prepare({ page }: NullstackServerContext) {
+  prepare({ page }: NullstackContext) {
     page.locale = 'pt-BR';
   }
 
@@ -21,7 +21,7 @@ class Application extends Nullstack {
     )
   }
 
-  render({ project }: NullstackServerContext & { myText: string }) {
+  render({ project }: NullstackContext & { myText: string }) {
     const Head = this.renderHead;
     return (
       <main>
