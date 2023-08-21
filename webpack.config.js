@@ -1,25 +1,22 @@
-const [server, client] = require('nullstack/webpack.config');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { useTSX } = require('nullstack-helpers/configs');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const [server, client] = require('nullstack/webpack.config')
 
 function useForkTS(config) {
-  if (config.entry.indexOf('client') > -1 && config.mode === 'development') {
-    config.plugins.push(new ForkTsCheckerWebpackPlugin());
+  if (config.mode === 'development') {
+    config.plugins.push(new ForkTsCheckerWebpackPlugin())
   }
-  return config;
+  return config
 }
 
 function configFactory(original) {
   return (...args) => {
-    let config = original(...args);
-    config = useTSX(config);
-    config = useForkTS(config);
+    let config = original(...args)
+    config = useForkTS(config)
 
-    return config;
+    return config
   }
 }
 
-const customClient = configFactory(client);
-const customServer = configFactory(server);
+const customClient = configFactory(client)
 
-module.exports = [customServer, customClient]
+module.exports = [server, customClient]
