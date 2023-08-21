@@ -1,24 +1,27 @@
-import Nullstack from 'nullstack';
-import type { NullstackContext } from './custom-types';
-import './Home.scss';
-import Logo from 'nullstack/logo';
+import './Home.scss'
+import Nullstack, { NullstackClientContext, NullstackNode } from 'nullstack'
 
-type Props = NullstackContext & {
-  /**
-   * The project name that Home needs
-   */
-  projectName: string
+import Logo from 'nullstack/logo'
+
+declare function Link(props: LinkProps): NullstackNode
+
+type HomeProps = {
+  greeting: string
 }
 
-class Home extends Nullstack<Props> {
+type LinkProps = {
+  href: string
+}
 
-  prepare({ project, page }: NullstackContext) {
-    page.title = `${project.name} - Nulla-chan te dá as boas vindas!`;
-    page.description = `${project.name} foi feito com Nullstack`;
+class Home extends Nullstack<HomeProps> {
+
+  prepare({ project, page }: NullstackClientContext) {
+    page.title = `${project.name} - Nulla-chan te dá as boas vindas!`
+    page.description = `${project.name} foi feito com Nullstack`
   }
 
-  renderLink({ children, href }: NullstackContext & { href: string }) {
-    const link = href + '?ref=create-nullstack-app';
+  renderLink({ children, href }: NullstackClientContext<LinkProps>) {
+    const link = `${href}?ref=create-nullstack-app`
     return (
       <a href={link} target="_blank" rel="noopener noreferrer">
         {children}
@@ -26,20 +29,18 @@ class Home extends Nullstack<Props> {
     )
   }
 
-  render(ctx: Props) {
-    const Link = this.renderLink;
+  render({ project, greeting }: NullstackClientContext<HomeProps>) {
     return (
       <section>
         <article>
           <Link href="https://nullstack.app/pt-br">
             <Logo height={60} light />
           </Link>
-          <h1> {ctx.projectName} </h1>
+          <h1> {project.name} </h1>
+          <h1> {greeting} </h1>
           <p>
             Fizemos alguns exemplos para te ajudar a começar! Dê uma olhada na
-            <Link href="vscode://file/C:/inetpub/wwwroot/nullstack-tsx-example/src">
-              pasta src
-            </Link>.
+            pasta src.
           </p>
           <span>
             Dica: nós temos uma
@@ -50,7 +51,7 @@ class Home extends Nullstack<Props> {
           <ul>
             <li>
               <Link href="https://nullstack.app/pt-br/componentes-renderizaveis">
-                🎉 Crie seu primeiro componente 
+                🎉 Crie seu primeiro componente
               </Link>
             </li>
             <li>
@@ -74,18 +75,13 @@ class Home extends Nullstack<Props> {
               </Link>
             </li>
           </ul>
-          <div>
-            <span>
-              Como diria da Vinci:
-            </span>
-            <blockquote>
-              "A simplicidade é a sofisticação suprema"
-            </blockquote>
-          </div>
         </article>
         <aside>
           <Link href="https://nullstack.app/pt-br/waifu">
-            <img src="/nulla-chan.webp" alt="Nulla-Chan: waifu oficial do Nullstack" />
+            <img
+              src="/nulla-chan.webp"
+              alt="Nulla-Chan: waifu oficial do Nullstack"
+            />
           </Link>
         </aside>
       </section>
@@ -94,4 +90,4 @@ class Home extends Nullstack<Props> {
 
 }
 
-export default Home;
+export default Home
