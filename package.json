@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "nullstack": "~0.20.0",
-    "fork-ts-checker-webpack-plugin": "^7.2.7"
+    "fork-ts-checker-webpack-plugin": "~9.1.0"
   },
   "scripts": {
     "start": "nullstack start",
