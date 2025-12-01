@@ -1,7 +1,9 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const [server, client] = require('nullstack/webpack.config')
 
+// Check type errors separately on compilation time
 function useForkTS(config) {
+  // could be on production
   if (config.mode === 'development') {
     config.plugins.push(new ForkTsCheckerWebpackPlugin())
   }
